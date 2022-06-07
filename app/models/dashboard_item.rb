@@ -1,0 +1,2 @@
+class DashboardItem < ApplicationRecord
+end

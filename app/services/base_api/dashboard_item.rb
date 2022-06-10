@@ -1,6 +1,6 @@
 module BaseApi
   module DashboardItem
-    def self.new_dashboard_item(params)
+    def self.new_dashboard_item(params, current_user)
       dashboard_item = current_user.dashboard_item.new(params)
       return ServiceContract.error('There was an error saving the dashboard item.') unless dashboard_item.save
       ServiceContract.success(dashboard_item)

@@ -2,7 +2,7 @@ module Api
   module V1
     class SalesmenController < Api::V1::ApplicationController
       def create
-        salesman = Salesman.new_book(salesman_params, @current_user)
+        salesman = Salesman.new_salesman(salesman_params, @current_user)
         render_error(errors: "error saving salesman", status: 400) and return unless result.success?
         payload = {
           "You have saved this salesman"

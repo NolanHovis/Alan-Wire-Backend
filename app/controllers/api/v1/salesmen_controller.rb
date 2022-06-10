@@ -2,7 +2,7 @@ module Api
   module V1
     class SalesmenController < Api::V1::ApplicationController
       def create
-        salesman = Salesman.new_book(salesman_params, @current_user)
+        salesman = Salesman.new_salesman(salesman_params, @current_user)
         render_error(errors: "error saving salesman", status: 400) and return unless result.success?
         payload = {
           "You have saved this salesman"
@@ -12,7 +12,7 @@ module Api
 
       def update
         result = Salesman.update_salesman(params[:id], salesman_params, @current_user)
-        render_error(errors: "Error updating salesmen", status: 400) and return unless result.success?
+        render_error(errors: "Error updating salesman", status: 400) and return unless result.success?
         payload = {
           "You have updated this salesman"
         }
@@ -21,7 +21,8 @@ module Api
 
       def destroy
         result = Salesman.destroy_salesman(params[:id], @current_user)
-        render_error(errors: "Error deleting book", status: 400) and return unless result.sucess?
+        render_error(errors: "Error deleting saleman", status: 400) and return unless result.sucess?
+        render_success(payload: nil)
       end
 
       private 

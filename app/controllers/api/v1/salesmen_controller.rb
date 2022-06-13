@@ -5,7 +5,7 @@ module Api
         salesman = Salesman.new_salesman(salesman_params, @current_user)
         render_error(errors: "error saving salesman", status: 400) and return unless result.success?
         payload = {
-          "You have saved this salesman"
+          saleman: SalesmanBlueprint.render_as_hash(result.payload, view: :normal)
         }
         render_success(payload: payload)
       end
@@ -14,7 +14,7 @@ module Api
         result = Salesman.update_salesman(params[:id], salesman_params, @current_user)
         render_error(errors: "Error updating salesman", status: 400) and return unless result.success?
         payload = {
-          "You have updated this salesman"
+          saleman: SalesmanBlueprint.render_as_hash(result.payload)
         }
         render_success(payload: payload)
       end

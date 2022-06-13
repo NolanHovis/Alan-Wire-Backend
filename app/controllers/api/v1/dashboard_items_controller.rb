@@ -5,7 +5,7 @@ module Api
         result = DashboardItem.new_dashboard_item(dashboard_item_params, @current_user)
         render_error(errors: "Error saving dashboard item", status: 400) and return unless result.success?
         payload = {
-          "You have saved this dashboard item"
+          dashboard_item: DashboardItemBlueprint.render_as_hash(result.payload, view: :normal)
         }
         render_success(payload: payload)
       end
@@ -14,7 +14,7 @@ module Api
         result = DashboardItem.update_dashboard_item(params[:id], dashboard_item_params, @current_user)
         render_error(errors: "Error updating dashboard item", status: 400) and return unless result.success?
         payload = {
-          "You have updated this dashboard item"
+          dashboard_item: DashboardItemBlueprint.render_as_hash(result.payload)
         }
         render_success(payload: payload)
       end

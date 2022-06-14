@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2022_06_09_164113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "custom_dashboards", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -32,8 +34,27 @@ ActiveRecord::Schema.define(version: 2022_06_09_164113) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "encounters", force: :cascade do |t|
+    t.string "title"
+    t.boolean "public"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_encounters_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "salesman_infos", force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.string "part_number"
+    t.integer "qty_wire"
+    t.integer "dollar_amount_sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -75,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_06_09_164113) do
 
   add_foreign_key "custom_dashboards", "dashboard_items"
   add_foreign_key "custom_dashboards", "users"
+  add_foreign_key "encounters", "users"
   add_foreign_key "tokens", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"

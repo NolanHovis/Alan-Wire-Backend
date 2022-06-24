@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_24_183139) do
+ActiveRecord::Schema.define(version: 2022_06_24_194738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,8 @@ ActiveRecord::Schema.define(version: 2022_06_24_183139) do
     t.integer "display_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "salesman_infos_id"
     t.bigint "custom_dashboard_id", null: false
     t.index ["custom_dashboard_id"], name: "index_dashboard_items_on_custom_dashboard_id"
-    t.index ["salesman_infos_id"], name: "index_dashboard_items_on_salesman_infos_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -48,6 +46,8 @@ ActiveRecord::Schema.define(version: 2022_06_24_183139) do
     t.integer "dollar_amount_sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "dashboard_items_id"
+    t.index ["dashboard_items_id"], name: "index_salesman_infos_on_dashboard_items_id"
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_183139) do
 
   add_foreign_key "custom_dashboards", "users"
   add_foreign_key "dashboard_items", "custom_dashboards"
+  add_foreign_key "salesman_infos", "dashboard_items", column: "dashboard_items_id"
   add_foreign_key "tokens", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"

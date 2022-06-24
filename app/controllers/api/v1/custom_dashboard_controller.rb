@@ -2,7 +2,7 @@ module Api
 	module V1
 		class CustomDashboardController < Api::V1::ApplicationController
 			#GET current_user
-			def get
+			def my_dash
 				render_success(payload: CustomDashboardBlueprint.render_as_hash(@current_user.custom_dashboard))
 			end
 			
@@ -18,7 +18,7 @@ module Api
 			
 			#PATCH/PUT/api/v1/custom_dashboard/:id
 			def update
-				result = CustomDashboard.update_custom_dashboard(params[:id], custom_dashboard_params, @ current_user)
+				result = CustomDashboard.update_custom_dashboard(params[:id], custom_dashboard_params, @current_user)
 				render_error(errors: "There was a n error updating this dashboard.", status: 400) and return unless result.success?
 				payload = {
 					custom_dashboard: CustomDashboardBlueprint.render_as_hash(result.payload),

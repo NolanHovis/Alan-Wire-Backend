@@ -9,7 +9,7 @@ module Api
 			
 			#POST/api/v1/custom_dashboard
 			def create
-				result = BaseApi::CustomDashboard.new_custom_dashboard(custom_dashboard_params, @current_user)
+				result = CustomDashboardService.new_custom_dashboard(custom_dashboard_params, @current_user)
 				render_error(errors: "There was an error creating this dashboard.", status: 400) and return unless result.success?
 				payload = {
 					custom_dashboard: CustomDashboardBlueprint.render_as_hash(result.payload),
@@ -19,8 +19,8 @@ module Api
 			
 			#PATCH/PUT/api/v1/custom_dashboard/:id
 			def update
-				result = BaseApi::CustomDashboard.update_custom_dashboard(params[:id], custom_dashboard_params, @current_user)
-				render_error(errors: "There was a n error updating this dashboard.", status: 400) and return unless result.success?
+				result = CustomDashboardService.update_custom_dashboard(params[:id], custom_dashboard_params, @current_user)
+				render_error(errors: "There was an error updating this dashboard.", status: 400) and return unless result.success?
 				payload = {
 					custom_dashboard: CustomDashboardBlueprint.render_as_hash(result.payload),
 				}
@@ -29,7 +29,7 @@ module Api
 			
 			#DELETE/api/v1/custom_dashboard:id
 			def destroy
-				result = BaseApi::CustomDashboard.destroy_custom_dashboard(params[:id], @current_user)
+				result = CustomDashboardService.destroy_custom_dashboard(params[:id], @current_user)
 				render_error(errors: "There was an error deleting this dashboard.", status: 400) and return unless result.success?
 				render_success(payload: nil)
 			end

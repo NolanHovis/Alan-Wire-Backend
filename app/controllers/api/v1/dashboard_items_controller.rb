@@ -1,8 +1,12 @@
 module Api
   module V1
-    class DashboardItemController < Api::V1::ApplicationController
+    class DashboardItemsController < Api::V1::ApplicationController
+			def my_item
+				render_success(payload: DashboardItemBlueprint.render_as_hash(@current_user.dashboard_item))
+			end
+
       def create
-        result = DashboardItem.new_dashboard_item(dashboard_item_params, @current_user)
+        result = DashboardItemService.new_dashboard_item(dashboard_item_params, @current_user)
         render_error(errors: "Error saving dashboard item", status: 400) and return unless result.success?
         payload = {
           dashboard_item: DashboardItemBlueprint.render_as_hash(result.payload, view: :normal)
@@ -11,7 +15,7 @@ module Api
       end
 
       def update
-        result = DashboardItem.update_dashboard_item(params[:id], dashboard_item_params, @current_user)
+        result = DashboardItemService.update_dashboard_item(params[:id], dashboard_item_params, @current_user)
         render_error(errors: "Error updating dashboard item", status: 400) and return unless result.success?
         payload = {
           dashboard_item: DashboardItemBlueprint.render_as_hash(result.payload)
@@ -20,14 +24,14 @@ module Api
       end
 
       def destroy
-        result = DashboardItem.destroy_dashboard_item(params[:id], @current_user)
+        result = DashboardItemService.destroy_dashboard_item(params[:id], @current_user)
         render_error(errors: "Error deleting dashboard item", status: 400) and return unless result.sucess?
         render_success(payload: nil)
       end
 
       private 
       def dashboard_item_params
-        params.require(:dashboard_item).permit(:name, :size, :display_type)
+        params.require(:dashboard_item).permit(:name, :size, :display_type, :custom_dashboard_id)
       end
     end
   end

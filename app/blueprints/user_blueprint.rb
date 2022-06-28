@@ -10,7 +10,6 @@ class UserBlueprint < Blueprinter::Base
       user.tokens.last
     end
   end
-
   view :normal do
     fields :first_name, :last_name, :name, :email, :phone
   end

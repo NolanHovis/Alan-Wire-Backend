@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Salesman_info.destroy_all
+SalesmanInfo.destroy_all
 
-Salesman_info.create!([
+SalesmanInfo.create([
     {
         name: "Mako Mori",
         qty_wire: 9000,
@@ -38,4 +38,4 @@ Salesman_info.create!([
     }
 ])
 
-p "created #{Salesman_info.count} Salesman_info"
+p "created #{SalesmanInfo.count} Salesman_info"

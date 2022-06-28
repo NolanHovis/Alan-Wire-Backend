@@ -1,6 +1,6 @@
 module Api
 	module V1
-		class CustomDashboardController < Api::V1::ApplicationController
+		class CustomDashboardsController < Api::V1::ApplicationController
     
 			#GET current_user
 			def my_dash

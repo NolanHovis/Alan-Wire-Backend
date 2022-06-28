@@ -36,7 +36,7 @@ module Api
 			
 			private
 			def custom_dashboard_params
-				params.require(:custom_dashboard).permit(:sales_id, :manager_id, :dashboard_id)
+				params.require(:custom_dashboard).permit(:sales_id, :manager_id, :dashboard_id, :name)
 			end
 		end
 	end

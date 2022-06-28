@@ -6,7 +6,7 @@ module BaseApi
             ServiceContract.success(custom_dashboard)
         end
 
-        def self.update_custom_dashboard(custom_dashboard_id, parms, current_user)
+        def self.update_custom_dashboard(custom_dashboard_id, params, current_user)
             custom_dashboard = current_user.custom_dashboard.find(custom_dashboard_id)
             return ServiceContract.error('Error updating custom dashboard') unless custom_dashboard.update(parms)
             ServiceContract.success(custom_dashboard)

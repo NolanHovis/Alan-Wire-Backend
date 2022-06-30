@@ -25,6 +25,10 @@ Rails.application.routes.draw do
         get :me
         post :create
       end
+      namespace :custom_dashboards do
+        get :my_dash
+      end
+      resources :custom_dashboards
     end
   end
 end

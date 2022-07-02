@@ -1,9 +1,13 @@
 module Api
   module V1
     class SalesmenController < Api::V1::ApplicationController
+			def my_salesman
+				render_success(payload: SalesmanBlueprint.render_as_hash(@current_user.salesman))
+			end
+
       def create
         salesman = Salesman.new_salesman(salesman_params, @current_user)
-        render_error(errors: "error saving salesman", status: 400) and return unless result.success?
+        render_error(errors: "Error saving salesman", status: 400) and return unless result.success?
         payload = {
           saleman: SalesmanBlueprint.render_as_hash(result.payload, view: :normal)
         }

@@ -28,7 +28,14 @@ Rails.application.routes.draw do
       namespace :custom_dashboards do
         get :my_dash
       end
+      namespace :dashboard_items do
+        get :my_item
+      end
+      namespace :salesman_infos do
+        get :my_salesman
+      end
       resources :custom_dashboards
+      resources :dashboard_items
     end
   end
 end

@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :custom_dashboards
+  has_many :dashboard_items
 
   validates :email, uniqueness: true
 

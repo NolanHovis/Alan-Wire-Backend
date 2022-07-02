@@ -13,9 +13,9 @@
     end
 
     def self.destroy_dashboard_item(dashboard_item_id, current_user)
-      dashboard_item = current_user.dashboard_items.find(dashboard_item_id)
+      # byebug
+      dashboard_item = current_user.dashboard_item.find(dashboard_item_id)
       return ServiceContract.error('There was an error deleting the dashboard item.') unless dashboard_item.destroy
       ServiceContract.success(payload: nil)
     end
   end
-

@@ -3,7 +3,7 @@ module Api
 		class CustomDashboardsController < Api::V1::ApplicationController
     
 			#GET current_user
-			def my_dash
+			def index
 				render_success(payload: CustomDashboardBlueprint.render_as_hash(@current_user.custom_dashboard))
 			end
 			

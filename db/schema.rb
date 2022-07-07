@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 2022_06_28_201712) do
     t.index ["dashboard_items_id"], name: "index_salesman_infos_on_dashboard_items_id"
   end
 
+  create_table "salesmen", force: :cascade do |t|
+    t.string "name"
+    t.string "qty_wire"
+    t.string "part_number"
+    t.string "dollar_amnt"
+    t.string "region"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tokens", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "value"

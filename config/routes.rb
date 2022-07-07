@@ -26,10 +26,10 @@ Rails.application.routes.draw do
         post :create
       end
       namespace :custom_dashboards do
-        get :my_dash
+        get :index
       end
       namespace :dashboard_items do
-        get :my_item
+        get :index
       end
       namespace :salesman_infos do
         get :my_salesman

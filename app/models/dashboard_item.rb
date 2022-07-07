@@ -5,4 +5,5 @@ class DashboardItem < ApplicationRecord
     validates :display_type, presence: true;
 
     has_one :salesman_info
+    belongs_to :user
 end

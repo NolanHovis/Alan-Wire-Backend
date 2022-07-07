@@ -4,5 +4,6 @@ class DashboardItemBlueprint < Blueprinter::Base
 
   view :normal do
     fields :created_at, :updated_at
+    association :salesman_info, blueprint: SalesmanBlueprint
   end
 end

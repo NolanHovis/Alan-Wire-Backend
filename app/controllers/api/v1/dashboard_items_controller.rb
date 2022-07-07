@@ -2,7 +2,7 @@ module Api
   module V1
     class DashboardItemsController < Api::V1::ApplicationController
 			def index
-				render_success(payload: DashboardItemBlueprint.render_as_hash(@current_user.dashboard_item))
+				render_success(payload: DashboardItemBlueprint.render_as_hash(@current_user.dashboard_items))
 			end
 
       def create

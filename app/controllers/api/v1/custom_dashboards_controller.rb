@@ -2,9 +2,9 @@ module Api
 	module V1
 		class CustomDashboardsController < Api::V1::ApplicationController
     
-			#GET current_user
+			#GET/api/v1/custom_dashboards/index
 			def index
-				render_success(payload: CustomDashboardBlueprint.render_as_hash(@current_user.custom_dashboard))
+				render_success(payload: CustomDashboardBlueprint.render_as_hash(@current_user.custom_dashboards))
 			end
 			
 			#POST/api/v1/custom_dashboard
@@ -12,7 +12,7 @@ module Api
 				result = CustomDashboardService.new_custom_dashboard(custom_dashboard_params, @current_user)
 				render_error(errors: "There was an error creating this dashboard.", status: 400) and return unless result.success?
 				payload = {
-					custom_dashboard: CustomDashboardBlueprint.render_as_hash(result.payload),
+					custom_dashboard: CustomDashboardBlueprint.render_as_hash(result.payload, view: :normal),
 				}
 				render_success(payload: payload)
 			end

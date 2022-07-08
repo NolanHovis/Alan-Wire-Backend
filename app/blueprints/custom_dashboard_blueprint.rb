@@ -6,9 +6,11 @@ class CustomDashboardBlueprint < Blueprinter::Base
     custom_dashboard.dashboard_item
   end
 
-  # view :normal do
-  #   fields :created_at, :updated_at, :name, :dashboard_item
+  view :normal do
+    fields :created_at, :updated_at, :name, :dashboard_item
     
-  #   association :dashboard_item, blueprint: DashboardItemBlueprint
-  # end
+    association :dashboard_item, blueprint: DashboardItemBlueprint do |custom_dashboard, _options|
+      custom_dashboard.dashboard_item
+    end
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_28_201712) do
+ActiveRecord::Schema.define(version: 2022_07_09_200156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2022_06_28_201712) do
     t.integer "dollar_amount_sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "dashboard_items_id"
-    t.index ["dashboard_items_id"], name: "index_salesman_infos_on_dashboard_items_id"
+    t.bigint "dashboard_item_id"
+    t.index ["dashboard_item_id"], name: "index_salesman_infos_on_dashboard_item_id"
   end
 
   create_table "salesmen", force: :cascade do |t|
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_06_28_201712) do
 
   add_foreign_key "custom_dashboards", "users"
   add_foreign_key "dashboard_items", "custom_dashboards"
-  add_foreign_key "salesman_infos", "dashboard_items", column: "dashboard_items_id"
+  add_foreign_key "salesman_infos", "dashboard_items"
   add_foreign_key "tokens", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"

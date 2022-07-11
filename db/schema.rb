@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_09_200156) do
+ActiveRecord::Schema.define(version: 2022_07_11_182551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_07_09_200156) do
     t.string "region"
     t.string "part_number"
     t.integer "qty_wire"
-    t.integer "dollar_amount_sold"
+    t.float "dollar_amount_sold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "dashboard_item_id"
